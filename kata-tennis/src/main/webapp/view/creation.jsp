@@ -16,12 +16,18 @@ th.game {
     color: white;
 }
 
+th {
+    display: table-cell;
+    vertical-align: top;   
+    text-align: center;
+}
+
 tr.gameRow:hover{background-color:#f5f5f5}
 </style>
  <head>
         <title><spring:message code="titre.creation.listetennisgame"/></title>
     </head>
-    <body >
+    <body>
     
 	     <table align="center" >
 		 <tr>
@@ -55,7 +61,7 @@ tr.gameRow:hover{background-color:#f5f5f5}
 		</tr>
 	 	</table>
         
-        <table align="center" >
+        <table align="center">
 		 <tr>
 		     <th>
 				    <table border="1" align="center">
@@ -103,7 +109,7 @@ tr.gameRow:hover{background-color:#f5f5f5}
 		     	     
 		     </th>
 		     		
-		     <th>
+		    <th>
 			<table border="1" align="center" >
 		            <thead>
 		                <tr>
