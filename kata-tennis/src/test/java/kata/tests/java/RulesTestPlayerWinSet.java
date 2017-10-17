@@ -2,79 +2,52 @@ package kata.tests.java;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
-import kata.dev.java.bean.TennisGame;
+import kata.dev.java.bean.TennisMatch;
 import kata.dev.java.rules.Rules;
 
-public class RulesTestPlayerWinSet {	
+public class RulesTestPlayerWinSet {
+	
+	@Test
+	public void testSetNoWinner() {
+		TennisMatch lastGame = new TennisMatch (3, 18, 3, 0, 0, 0, 0, 0);		
+		assertEquals(0,Rules.playerWinSetWithTB(lastGame));
+		
+		TennisMatch lastGame_ = new TennisMatch (10, 60, 6, 0, 2, 6, 0, 5);		
+		assertEquals(0,Rules.playerWinSetWithTB(lastGame_));	
+		
+		TennisMatch lastGame_1 = new TennisMatch (11, 66, 5, 0, 0, 6, 0, 0);		
+		assertEquals(0,Rules.playerWinSetWithTB(lastGame_1));	
+	}
+	
 			
 	@Test
-	public void testNoWinner() {
-		List<TennisGame> set =  new ArrayList <TennisGame>();
-		set.add(new TennisGame (1, 0, 0, 15, 1, 0, 0, 0));
-		set.add(new TennisGame (1, 1, 0, 30, 2, 0, 0, 0));
-		set.add(new TennisGame (1, 2, 0, 40, 3, 0, 0, 0));
-		set.add(new TennisGame (1, 3, 0, 40, 4, 0, 0, 0));
-		set.add(new TennisGame (1, 4, 0, 40, 5, 0, 0, 0));
+	public void testPlayerWinSet() {
+		TennisMatch lastGame = new TennisMatch (10, 60, 6, 0, 0, 4, 0, 0);		
+		assertEquals(1,Rules.playerWinSet(lastGame));		
 		
-		assertEquals(0,Rules.playerWinSet(set).getWinner());
-		assertEquals(0,Rules.playerWinSet(set).getNewGame().getSetScore_1());
-		assertEquals(0,Rules.playerWinSet(set).getNewGame().getSetScore_2());
+		TennisMatch lastGame_ = new TennisMatch (10, 60, 4, 0, 0, 6, 0, 0);		
+		assertEquals(2,Rules.playerWinSetWithTB(lastGame_));
 		
-	}
-
-	@Test
-	public void testPlayer1WinSet() {
-		List<TennisGame> set =  new ArrayList <TennisGame>();
-		set.add(new TennisGame (1, 0, 0, 0, 0, 0, 0, 0));
-		set.add(new TennisGame (1, 1, 0, 15, 1, 0, 0, 0));
-		set.add(new TennisGame (1, 2, 0, 30, 2, 0, 0, 0));
-		set.add(new TennisGame (1, 3, 0, 40, 3, 0, 0, 0));
-		set.add(new TennisGame (1, 4, 0, 40, 4, 0, 0, 0));
-		set.add(new TennisGame (1, 5, 0, 40, 5, 0, 0, 0));
-		set.add(new TennisGame (1, 6, 0, 40, 6, 0, 0, 0));
+		TennisMatch lastGame_1 = new TennisMatch (10, 60, 7, 0, 0, 6, 0, 0);		
+		assertEquals(1,Rules.playerWinSetWithTB(lastGame_1));	
 		
-		assertEquals(1, Rules.playerWinSet(set).getWinner());
-		assertEquals(1,Rules.playerWinSet(set).getNewGame().getSetScore_1());
-		assertEquals(0,Rules.playerWinSet(set).getNewGame().getSetScore_2());
-		
+		TennisMatch lastGame_2 = new TennisMatch (13, 78, 6, 0, 0, 7, 0, 0);		
+		assertEquals(2,Rules.playerWinSet(lastGame_2));					
 	}
 	
 	@Test
-	public void testPlayer2WinSet() {
-		List<TennisGame> set =  new ArrayList <TennisGame>();
-		set.add(new TennisGame (1, 0, 0, 0, 0, 0, 0, 0));
-		set.add(new TennisGame (1, 1, 0, 0, 0, 0, 15, 1));
-		set.add(new TennisGame (1, 2, 0, 0, 0, 0, 30, 2));
-		set.add(new TennisGame (1, 3, 0, 0, 0, 0, 40, 3));
-		set.add(new TennisGame (1, 4, 0, 15, 1, 0, 40, 3));
-		set.add(new TennisGame (1, 5, 0, 30, 2, 0, 40, 3));
-		set.add(new TennisGame (1, 6, 0, 30, 2, 0, 40, 4));
+	public void testPlayerWinSetTB() {
 				
-		assertEquals(2, Rules.playerWinSet(set).getWinner());
-		assertEquals(0,Rules.playerWinSet(set).getNewGame().getSetScore_1());
-		assertEquals(1,Rules.playerWinSet(set).getNewGame().getSetScore_2());
+		TennisMatch lastGame = new TennisMatch (13, 78, 6, 0, 6, 6, 0, 5);		
+		assertEquals(1,Rules.playerWinSetWithTB(lastGame));	
+		
+		TennisMatch lastGame_ = new TennisMatch (13, 78, 6, 0, 5, 6, 0, 6);		
+		assertEquals(2,Rules.playerWinSetWithTB(lastGame_));	
 	}
 	
-	@Test
-	public void testDEUCEMode() {
-		List<TennisGame> set =  new ArrayList <TennisGame>();
-		set.add(new TennisGame (1, 0, 0, 0, 0, 0, 0, 0));
-		set.add(new TennisGame (1, 1, 0, 0, 0, 0, 15, 1));
-		set.add(new TennisGame (1, 2, 0, 0, 0, 0, 30, 2));
-		set.add(new TennisGame (1, 3, 0, 0, 0, 0, 40, 3));
-		set.add(new TennisGame (1, 4, 0, 15, 1, 0, 40, 3));
-		set.add(new TennisGame (1, 5, 0, 30, 2, 0, 40, 3));
-		set.add(new TennisGame (1, 6, 0, 40, 3, 0, 40, 3));
-		set.add(new TennisGame (1, 7, 0, 40, 4, 0, 40, 3));
-				
-		assertEquals(0, Rules.playerWinSet(set).getWinner());	
-		assertEquals(0,Rules.playerWinSet(set).getNewGame().getSetScore_1());
-		assertEquals(0,Rules.playerWinSet(set).getNewGame().getSetScore_2());		
 		
-	}
+	
+	
 }

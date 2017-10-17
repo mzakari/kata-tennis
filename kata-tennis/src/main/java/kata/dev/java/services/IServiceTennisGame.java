@@ -2,15 +2,19 @@ package kata.dev.java.services;
 
 import java.util.List;
 
-import kata.dev.java.bean.TennisGame;
+import kata.dev.java.bean.TennisMatch;
 
 public interface IServiceTennisGame {
 	
-	List<TennisGame> getAllTennisGame();
+	List<TennisMatch> getAllTennisPlayService();
 	
-	public List<TennisGame> searchTennisGameBySetIdService( int setId);
+	public List<Object[]> getAllTennisGameService();
 	
-	void createGameService(final TennisGame game);
+	public List<TennisMatch> searchTennisPlayBySetIdService( int setId);
 	
-	void deleteLastGameService( final Integer gameId);
+	void createPlayService(final TennisMatch game);
+	
+	void deleteLastPlayService( final Integer gameId);
+	
+	void deleteAllPlayService();
 }

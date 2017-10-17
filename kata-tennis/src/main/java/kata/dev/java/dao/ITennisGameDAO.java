@@ -2,15 +2,20 @@ package kata.dev.java.dao;
 
 import java.util.List;
 
-import kata.dev.java.bean.TennisGame;
+import kata.dev.java.bean.TennisMatch;
+
 
 public interface ITennisGameDAO {
 
-	List<TennisGame> getAllTennisGame();
+	List<TennisMatch> getAllTennisPlayDAO();
 	
-	public List<TennisGame> searchTennisGameBySetIdDAO( int setId);
+	List<Object[]> getAllTennisGameDAO();
 	
-	void createGameDAO(final TennisGame pTennisGame);
+	public List<TennisMatch> searchTennisPlayBySetIdDAO( int setId);
 	
-	void deleteLastGameDAO(final TennisGame pTennisGame);
+	void addPlayDAO(final TennisMatch pTennisGame);
+	
+	void deleteLastPlayDAO(final TennisMatch pTennisGame);
+	
+	void deleteAllPlayDAO();
 }

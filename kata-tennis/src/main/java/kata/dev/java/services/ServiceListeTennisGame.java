@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kata.dev.java.bean.TennisGame;
+import kata.dev.java.bean.TennisMatch;
 import kata.dev.java.dao.ITennisGameDAO;
+
 
 @Service
 public class ServiceListeTennisGame implements IServiceTennisGame {
@@ -15,43 +16,41 @@ public class ServiceListeTennisGame implements IServiceTennisGame {
 	  private ITennisGameDAO dao;
 	 
 	 @Transactional(readOnly=true)
-	public List<TennisGame> getAllTennisGame() {
+	public List<TennisMatch> getAllTennisPlayService() {
 		// TODO Auto-generated method stub
-		return dao.getAllTennisGame();
+		return dao.getAllTennisPlayDAO();
 	}
 	 
 	 @Transactional
-	public void createGameService(final TennisGame game) {
-		// TODO Auto-generated method stub
-		/* final TennisGame g = new TennisGame();
-			
-			g.setIdSet(idSet);
-			g.setIdGame(idGame);
-			
-			g.setSetScore_1(setScore_1);			
-			g.setGamePoint_1(gamePoint_1);
-			g.setGameScore_1(gameScore_1);
-			
-			g.setSetScore_2(setScore_2);
-			g.setGamePoint_2(gamePoint_2);
-			g.setGameScore_2(gameScore_2);*/		
-			
-			
-			dao.createGameDAO(game);
+	public void createPlayService(final TennisMatch game) {
+		// TODO Auto-generated method stub	
+			dao.addPlayDAO(game);
 	}
 
 	 @Transactional
-	public List<TennisGame> searchTennisGameBySetIdService(int setId) {
+	public List<TennisMatch> searchTennisPlayBySetIdService(int setId) {
 		// TODO Auto-generated method stub
-		return dao.searchTennisGameBySetIdDAO(setId);
+		return dao.searchTennisPlayBySetIdDAO(setId);
 	}
 
 	 @Transactional
-	public void deleteLastGameService(final Integer idGame) {
+	public void deleteLastPlayService(final Integer idGame) {
 		// TODO Auto-generated method stub
-		 TennisGame temp = new TennisGame();
-		 temp.setIdGame(idGame);
-		dao.deleteLastGameDAO(temp);
+		 TennisMatch temp = new TennisMatch();
+		 temp.setIdPlay(idGame);
+		dao.deleteLastPlayDAO(temp);
+	}
+
+	 @Transactional
+	public void deleteAllPlayService() {
+		// TODO Auto-generated method stub
+		dao.deleteAllPlayDAO();
+	}
+
+	 @Transactional
+	public List<Object[]> getAllTennisGameService() {
+		// TODO Auto-generated method stub
+		return dao.getAllTennisGameDAO();
 	}
 	
 
