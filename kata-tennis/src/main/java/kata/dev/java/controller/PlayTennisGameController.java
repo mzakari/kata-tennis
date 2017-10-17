@@ -26,7 +26,7 @@ public class PlayTennisGameController {
 	 
 	 
 	 	@RequestMapping(value="/displayTennisGame", method = RequestMethod.GET)
-	    public String afficher(final ModelMap pModel) {
+	    public String display(final ModelMap pModel) {
 	        final List<TennisMatch> challenge = service.getAllTennisPlayService();
 	        final List<Object[]> games = service.getAllTennisGameService();
 	        pModel.addAttribute("challenge", challenge);       
@@ -39,7 +39,7 @@ public class PlayTennisGameController {
 	    }
 
 	    @RequestMapping(value="/playTennisGame", method = RequestMethod.POST)
-	    public String creer(@Valid @ModelAttribute(value="creation") final CreationForm pCreation, 
+	    public String create(@Valid @ModelAttribute(value="creation") final CreationForm pCreation, 
 	            final BindingResult pBindingResult, final ModelMap pModel) {
 
 	        if (!pBindingResult.hasErrors()) {
@@ -57,11 +57,17 @@ public class PlayTennisGameController {
 	        	
 	        }	
 	        
-	        int matchWinner = Rules.playerWinSet(service.getAllTennisPlayService().get(service.getAllTennisPlayService().size()-1));
-	        if (matchWinner == 1) System.out.println("Player 1 win Match");
-	        if (matchWinner == 2) System.out.println("Player 2 win Match");
+	        int matchWinner = Rules.playerWinSetWithTB(service.getAllTennisPlayService().get(service.getAllTennisPlayService().size()-1));
+	        if (matchWinner == 1) {
+	        	System.out.println("Player 1 win Match");
+	        	return matchEnd(pModel, 1);
+	        }
+	        if (matchWinner == 2) {
+	        	System.out.println("Player 2 win Match");
+	        	return matchEnd(pModel, 2);
+	        }
 	        
-	        return afficher(pModel);
+	        return display(pModel);
 	    }	    
 
 	    @RequestMapping(value="/deleteTennisGame", method = RequestMethod.POST)
@@ -76,8 +82,13 @@ public class PlayTennisGameController {
 	    		List<TennisMatch> temp = service.getAllTennisPlayService();
 		    	if(temp.size() > 1)
 		    		service.deleteLastPlayService(temp.get(temp.size()-1).getIdPlay());	    		
-	    	}	    	
-	    	
-	        return afficher(pModel);
+	    	}
+	    	return display(pModel);
+	    }
+	    
+	    @RequestMapping(value="/end", method = RequestMethod.GET)
+	    public String matchEnd(final ModelMap pModel, int winner) {	    	
+	    	 pModel.addAttribute("winner", winner);
+	         return "matchend";
 	    }
 }

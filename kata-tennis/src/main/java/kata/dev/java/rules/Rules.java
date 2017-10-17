@@ -2,16 +2,10 @@ package kata.dev.java.rules;
 
 
 
-import java.util.List;
-
-
 import kata.dev.java.bean.TennisMatch;
 
 
 public class Rules {
-	
-	
-	private static List<TennisMatch> out;
 
 	public static int playerWinSet(TennisMatch lastGame){
 		int winner = 0;
@@ -40,10 +34,10 @@ public class Rules {
 		
 		else if (lastPlay.getGameScore_1() == 6 && lastPlay.getGameScore_2() == 6 ){
 			
-			 if ((lastPlay.getPlayPoint_1() - lastPlay.getPlayPoint_2() == 1) && lastPlay.getPlayPoint_1() >= 6) 
+			 if ((lastPlay.getPlayPoint_1() - lastPlay.getPlayPoint_2() >= 1) && lastPlay.getPlayPoint_1() > 6) 
 				winner = 1;
 			
-			else if ((lastPlay.getPlayPoint_2() - lastPlay.getPlayPoint_1() == 1) && lastPlay.getPlayPoint_2() >= 6)
+			else if ((lastPlay.getPlayPoint_2() - lastPlay.getPlayPoint_1() >= 1) && lastPlay.getPlayPoint_2() > 6)
 				winner = 2;			
 		}
 		
@@ -85,16 +79,20 @@ public class Rules {
 		//Tie Break
 		if(g.getGameScore_1() == 6 && g.getGameScore_2() == 6){
 			if(playerId == 1){
-				if( g.getPlayPoint_1() - g.getPlayPoint_2() == 1 )
+				if( g.getPlayPoint_1() - g.getPlayPoint_2() == 1 ){
 					play.setWinner(1);
-				//ajouter un objet ou stopper le programme : essai d'inserer un objet null dans la table
+					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1()+1, g.getGameScore_2(), 0, g.getPlayPoint_2());
+				}
+					
 				else
 					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1()+1, g.getGameScore_2(), 0, g.getPlayPoint_2());
 			}
 			
 			if(playerId == 2){
-				if( g.getPlayPoint_2() - g.getPlayPoint_1() == 1 )
-					play.setWinner(2);	
+				if( g.getPlayPoint_2() - g.getPlayPoint_1() == 1 ){
+					play.setWinner(2);
+					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, 0, g.getGameScore_2(), 0, g.getPlayPoint_2()+1);
+				}
 				else
 					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1(), g.getGameScore_2(), 0, g.getPlayPoint_2()+1);
 			}
