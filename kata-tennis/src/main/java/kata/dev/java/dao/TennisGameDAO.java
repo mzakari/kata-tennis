@@ -66,7 +66,7 @@ public class TennisGameDAO implements ITennisGameDAO {
 	public List<Object[]> getAllTennisGameDAO() {
 		
 		TypedQuery<Object[]> query =
-			entityManager.createQuery("SELECT DISTINCT t.idGame, t.gameScore_1, t.gameScore_2 FROM TennisMatch t", Object[].class);			  
+			entityManager.createQuery("SELECT DISTINCT t.idGame, t.gameScore_1, t.gameScore_2 FROM TennisMatch t WHERE t.idGame > 1", Object[].class);			  
 			  
 			  return query.getResultList();
 	}
