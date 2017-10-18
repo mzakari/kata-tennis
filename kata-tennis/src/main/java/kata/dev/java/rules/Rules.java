@@ -6,45 +6,7 @@ import kata.dev.java.bean.TennisMatch;
 
 
 public class Rules {
-
-	public static int playerWinSet(TennisMatch lastGame){
-		int winner = 0;
-		
-		if ((lastGame.getGameScore_1() == 6 && lastGame.getGameScore_2() < 5) || lastGame.getGameScore_1() == 7)
-			winner = 1;
-		
-		else if ((lastGame.getGameScore_2() == 6 && lastGame.getGameScore_1() < 5) || lastGame.getGameScore_2() == 7) 
-			winner = 2;
-				
-		return winner;
-	}
 	
-	//Tie Break mode
-	public static int playerWinSetWithTB(TennisMatch lastPlay){
-		int winner = 0;
-		
-		if (lastPlay.getGameScore_1() < 6 && lastPlay.getGameScore_2() < 6 )
-			return winner;
-		
-		else if ((lastPlay.getGameScore_1() == 6 && lastPlay.getGameScore_2() < 5) || lastPlay.getGameScore_1() == 7)
-			winner = 1;
-		
-		else if ((lastPlay.getGameScore_2() == 6 && lastPlay.getGameScore_1() < 5) || lastPlay.getGameScore_2() == 7) 
-			winner = 2;			
-		
-		else if (lastPlay.getGameScore_1() == 6 && lastPlay.getGameScore_2() == 6 ){
-			
-			 if ((lastPlay.getPlayPoint_1() - lastPlay.getPlayPoint_2() >= 1) && lastPlay.getPlayPoint_1() > 6) 
-				winner = 1;
-			
-			else if ((lastPlay.getPlayPoint_2() - lastPlay.getPlayPoint_1() >= 1) && lastPlay.getPlayPoint_2() > 6)
-				winner = 2;			
-		}
-		
-		return winner;
-	}
-	
-			
 	public static Play addPlay(int playerId, TennisMatch g){
 		Play play = new Play();
 		play.setWinner(0);
@@ -75,30 +37,9 @@ public class Rules {
 	
 	public static Play addPlayDEUCE(int playerId, TennisMatch g){
 		Play play = new Play();
-		play.setWinner(0);
-		//Tie Break
-		if(g.getGameScore_1() == 6 && g.getGameScore_2() == 6){
-			if(playerId == 1){
-				if( g.getPlayPoint_1() - g.getPlayPoint_2() == 1 ){
-					play.setWinner(1);
-					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1()+1, g.getGameScore_2(), 0, g.getPlayPoint_2());
-				}
-					
-				else
-					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1()+1, g.getGameScore_2(), 0, g.getPlayPoint_2());
-			}
-			
-			if(playerId == 2){
-				if( g.getPlayPoint_2() - g.getPlayPoint_1() == 1 ){
-					play.setWinner(2);
-					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, 0, g.getGameScore_2(), 0, g.getPlayPoint_2()+1);
-				}
-				else
-					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1(), g.getGameScore_2(), 0, g.getPlayPoint_2()+1);
-			}
-		}
+		play.setWinner(0);		
 		
-		else{
+		if(g.getGameScore_1() < 6 || g.getGameScore_2() < 6){
 			
 			if(playerId == 1){	
 				
@@ -150,10 +91,67 @@ public class Rules {
 					play. newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(),  g.getPlayScore_1(), g.getPlayPoint_1(), g.getGameScore_2(), scoreAdd(g.getPlayScore_2()), g.getPlayPoint_2()+1);
 				}
 		}
+		//Tie Break
+		else if(g.getGameScore_1() == 6 && g.getGameScore_2() == 6){
+			if(playerId == 1){
+				if( g.getPlayPoint_1() - g.getPlayPoint_2() == 1 ){
+					play.setWinner(1);
+					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1()+1, g.getGameScore_2(), 0, g.getPlayPoint_2());
+				}
+					
+				else
+					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1()+1, g.getGameScore_2(), 0, g.getPlayPoint_2());
+			}
+			
+			if(playerId == 2){
+				if( g.getPlayPoint_2() - g.getPlayPoint_1() == 1 ){
+					play.setWinner(2);
+					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, 0, g.getGameScore_2(), 0, g.getPlayPoint_2()+1);
+				}
+				else
+					play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), 0, g.getPlayPoint_1(), g.getGameScore_2(), 0, g.getPlayPoint_2()+1);
+			}
+		}
 		
 		return play;		
 	}
+
+	public static int playerWinSet(TennisMatch lastPlay){
+		int winner = 0;
+		
+		if ((lastPlay.getGameScore_1() == 6 && lastPlay.getGameScore_2() < 5) || lastPlay.getGameScore_1() == 7)
+			winner = 1;
+		
+		else if ((lastPlay.getGameScore_2() == 6 && lastPlay.getGameScore_1() < 5) || lastPlay.getGameScore_2() == 7) 
+			winner = 2;
+				
+		return winner;
+	}
 	
+	//Tie Break mode
+	public static int playerWinSetWithTB(TennisMatch lastPlay){
+		int winner = 0;
+		
+		if (lastPlay.getGameScore_1() < 6 && lastPlay.getGameScore_2() < 6 )
+			return winner;
+		
+		else if ((lastPlay.getGameScore_1() == 6 && lastPlay.getGameScore_2() < 5) || lastPlay.getGameScore_1() == 7)
+			winner = 1;
+		
+		else if ((lastPlay.getGameScore_2() == 6 && lastPlay.getGameScore_1() < 5) || lastPlay.getGameScore_2() == 7) 
+			winner = 2;			
+		
+		else if (lastPlay.getGameScore_1() == 6 && lastPlay.getGameScore_2() == 6 ){
+			
+			 if ((lastPlay.getPlayPoint_1() - lastPlay.getPlayPoint_2() >= 2) && lastPlay.getPlayPoint_1() > 6) 
+				winner = 1;
+			
+			else if ((lastPlay.getPlayPoint_2() - lastPlay.getPlayPoint_1() >= 2) && lastPlay.getPlayPoint_2() > 6)
+				winner = 2;			
+		}
+		
+		return winner;
+	}	
 	
 	public static int scoreAdd(int playScore){
 		
