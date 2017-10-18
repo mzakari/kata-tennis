@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kata.dev.java.bean.TennisMatch;
-import kata.dev.java.dao.ITennisGameDAO;
+import kata.dev.java.dao.ITennisMatchDAO;
 
 
 @Service
-public class ServiceListeTennisGame implements IServiceTennisGame {
+public class ServiceTennisMatch implements IServiceTennisMatch {
 	 @Autowired
-	  private ITennisGameDAO dao;
+	  private ITennisMatchDAO dao;
 	 
 	 @Transactional(readOnly=true)
 	public List<TennisMatch> getAllTennisPlayService() {

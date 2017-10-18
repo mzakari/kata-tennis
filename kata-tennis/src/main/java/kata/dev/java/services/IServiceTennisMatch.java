@@ -4,7 +4,7 @@ import java.util.List;
 
 import kata.dev.java.bean.TennisMatch;
 
-public interface IServiceTennisGame {
+public interface IServiceTennisMatch {
 	
 	List<TennisMatch> getAllTennisPlayService();
 	

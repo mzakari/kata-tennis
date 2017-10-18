@@ -17,7 +17,7 @@ import kata.dev.java.bean.TennisMatch;
 
 
 @Repository
-public class TennisGameDAO implements ITennisGameDAO {
+public class TennisMatchDAO implements ITennisMatchDAO {
 
 	@PersistenceContext
 	private EntityManager entityManager;

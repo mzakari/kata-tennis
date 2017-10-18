@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kata.dev.java.bean.TennisMatch;
 import kata.dev.java.rules.Play;
 import kata.dev.java.rules.Rules;
-import kata.dev.java.services.IServiceTennisGame;
+import kata.dev.java.services.IServiceTennisMatch;
 
 @Controller
-public class PlayTennisGameController {
+public class PlayTennisMatchController {
 	
 	 @Autowired
-	 private IServiceTennisGame service;
+	 private IServiceTennisMatch service;
 	 
 	 
 	 	@RequestMapping(value="/displayTennisGame", method = RequestMethod.GET)

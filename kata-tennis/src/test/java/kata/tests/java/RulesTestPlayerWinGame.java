@@ -36,11 +36,11 @@ public class RulesTestPlayerWinGame {
 	
 	@Test
 	public void testSprint1UserStory1() {
-		assertEquals(45,Rules.addPlay(2, new TennisMatch (1, 6, 0, 40, 3, 0, 40, 3)).getPlay().getPlayScore_1());
+		
+		assertEquals(2,Rules.addPlay(2, new TennisMatch (1, 6, 0, 40, 3, 0, 40, 3)).getWinner());
 		
 	}	
-	
-	
+		
 	
 	@Test
 	public void testAddPlayaAndGameWinner() {
@@ -59,11 +59,11 @@ public class RulesTestPlayerWinGame {
 	public void testSprint1UserStory2() {		
 		
 		assertEquals(42,Rules.addPlayDEUCE(1, new TennisMatch (1, 6, 0, 40, 3, 0, 40, 3)).getPlay().getPlayScore_1());
-		assertEquals(41,Rules.addPlayDEUCE(2, new TennisMatch (1, 7, 0, 42, 4, 0, 40, 3)).getPlay().getPlayScore_1());	
-		assertEquals(42,Rules.addPlayDEUCE(1, new TennisMatch (1, 8, 0, 41, 4, 0, 41, 4)).getPlay().getPlayScore_1());
-		assertEquals(1,Rules.addPlayDEUCE(1, new TennisMatch (1, 9, 0, 42, 3, 0, 40, 3)).getWinner());
-		
+		assertEquals(41,Rules.addPlayDEUCE(2, new TennisMatch (1, 7, 0, 42, 4, 0, 40, 3)).getPlay().getPlayScore_1());
 		assertEquals(40,Rules.addPlayDEUCE(1, new TennisMatch (1, 6, 0, 41, 3, 0, 41, 3)).getPlay().getPlayScore_2());	
+		assertEquals(42,Rules.addPlayDEUCE(1, new TennisMatch (1, 8, 0, 41, 4, 0, 41, 4)).getPlay().getPlayScore_1());
+		assertEquals(1,Rules.addPlayDEUCE(1, new TennisMatch (1, 9, 0, 42, 3, 0, 40, 3)).getWinner());		
+		
 	}	
 
 	

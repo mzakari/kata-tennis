@@ -23,15 +23,15 @@ public class TennisMatch implements Cloneable {
 		super();
 	}
 	
-	public TennisMatch(int setId, int gameId, int setScore1, int gameScore1, int gamePoint1,int setScore2, int gameScore2, int gamePoint2){
-		this.idGame = setId;
-		this.idPlay = gameId;
+	public TennisMatch(int idGame, int idPlay, int setScore1, int playScore1, int playPoint1,int gameScore2, int playScore2, int playPoint2){
+		this.idGame = idGame;
+		this.idPlay = idPlay;
 		this.gameScore_1 = setScore1;
-		this.playPoint_1 = gamePoint1;
-		this.playScore_1 = gameScore1;
-		this.gameScore_2 = setScore2;
-		this.playPoint_2 = gamePoint2;
-		this.playScore_2 = gameScore2;
+		this.playPoint_1 = playPoint1;
+		this.playScore_1 = playScore1;
+		this.gameScore_2 = gameScore2;
+		this.playPoint_2 = playPoint2;
+		this.playScore_2 = playScore2;
 	}	
 	
 

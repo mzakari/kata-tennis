@@ -5,7 +5,7 @@ import java.util.List;
 import kata.dev.java.bean.TennisMatch;
 
 
-public interface ITennisGameDAO {
+public interface ITennisMatchDAO {
 
 	List<TennisMatch> getAllTennisPlayDAO();
 	

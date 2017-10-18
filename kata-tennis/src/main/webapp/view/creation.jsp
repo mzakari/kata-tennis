@@ -24,7 +24,7 @@ th {
 tr.gameRow:hover{background-color:#f5f5f5}
 </style>
  <head>
-        <title><spring:message code="title.creation.listetennisgame"/></title>
+        <title><spring:message code="title.creation.tennismatch"/></title>
     </head>
     <body>
     
