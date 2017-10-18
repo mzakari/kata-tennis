@@ -57,7 +57,7 @@ public class PlayTennisGameController {
 	        	
 	        }	
 	        
-	        int matchWinner = Rules.playerWinSetWithTB(service.getAllTennisPlayService().get(service.getAllTennisPlayService().size()-1));
+	        int matchWinner = Rules.playerWinSetTieBreakMode(service.getAllTennisPlayService().get(service.getAllTennisPlayService().size()-1));
 	        if (matchWinner == 1) {
 	        	System.out.println("Player 1 win Match");
 	        	return matchEnd(pModel, 1);

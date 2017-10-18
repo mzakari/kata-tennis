@@ -7,6 +7,7 @@ import kata.dev.java.bean.TennisMatch;
 
 public class Rules {
 	
+	//Sprint 1 : user story 1
 	public static Play addPlay(int playerId, TennisMatch g){
 		Play play = new Play();
 		play.setWinner(0);
@@ -35,6 +36,7 @@ public class Rules {
 		return play;		
 	}
 	
+	//Sprint 1 : user story 2 DEUCE | Sprint 2 : user story 1 & 2
 	public static Play addPlayDEUCE(int playerId, TennisMatch g){
 		Play play = new Play();
 		play.setWinner(0);		
@@ -115,7 +117,8 @@ public class Rules {
 		
 		return play;		
 	}
-
+	
+	//Sprint 2 : user story 1 
 	public static int playerWinSet(TennisMatch lastPlay){
 		int winner = 0;
 		
@@ -128,8 +131,8 @@ public class Rules {
 		return winner;
 	}
 	
-	//Tie Break mode
-	public static int playerWinSetWithTB(TennisMatch lastPlay){
+	//Sprint 2 : user story 2 Tie Break mode
+	public static int playerWinSetTieBreakMode(TennisMatch lastPlay){
 		int winner = 0;
 		
 		if (lastPlay.getGameScore_1() < 6 && lastPlay.getGameScore_2() < 6 )
