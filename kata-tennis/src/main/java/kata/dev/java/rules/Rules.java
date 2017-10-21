@@ -7,6 +7,10 @@ import kata.dev.java.bean.TennisMatch;
 
 public class Rules {
 	
+	private Rules(){
+		super();
+	}
+	
 	//Sprint 1 : user story 1
 	public static Play addPlay(int playerId, TennisMatch g){
 		Play play = new Play();
