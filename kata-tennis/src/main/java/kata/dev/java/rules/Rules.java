@@ -9,39 +9,10 @@ public class Rules {
 	
 	private Rules(){
 		super();
-	}
+	}	
+		
 	
-	//Sprint 1 : user story 1
 	public static Play addPlay(int playerId, TennisMatch g){
-		Play play = new Play();
-		play.setWinner(0);
-		
-		
-		if(playerId == 1){	
-						
-			if( scoreAdd(g.getPlayScore_1()) == 45){
-				play.setWinner(1);
-				play.newPlay(g.getIdGame()+1, g.getIdPlay()+1, g.getGameScore_1()+1, 0, 0, g.getGameScore_2(), 0, 0);
-			}
-			else
-				play.newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(), scoreAdd(g.getPlayScore_1()), g.getPlayPoint_1()+1, g.getGameScore_2(), g.getPlayScore_2(), g.getPlayPoint_2());
-		}
-		
-		else if(playerId == 2){
-			
-			if(scoreAdd(g.getPlayScore_2()) == 45){
-				play.setWinner(2);
-				play. newPlay(g.getIdGame()+1, g.getIdPlay()+1, g.getGameScore_1(), 0, 0, g.getGameScore_2()+1, 0, 0);
-			}				
-			else
-				play. newPlay(g.getIdGame(), g.getIdPlay()+1, g.getGameScore_1(),  g.getPlayScore_1(), g.getPlayPoint_1(), g.getGameScore_2(), scoreAdd(g.getPlayScore_2()), g.getPlayPoint_2()+1);
-		}
-		
-		return play;		
-	}
-	
-	//Sprint 1 : user story 2 DEUCE | Sprint 2 : user story 1 & 2
-	public static Play addPlayDEUCE(int playerId, TennisMatch g){
 		Play play = new Play();
 		play.setWinner(0);		
 		
@@ -122,21 +93,9 @@ public class Rules {
 		return play;		
 	}
 	
-	//Sprint 2 : user story 1 
-	public static int playerWinSet(TennisMatch lastPlay){
-		int winner = 0;
-		
-		if ((lastPlay.getGameScore_1() == 6 && lastPlay.getGameScore_2() < 5) || lastPlay.getGameScore_1() == 7)
-			winner = 1;
-		
-		else if ((lastPlay.getGameScore_2() == 6 && lastPlay.getGameScore_1() < 5) || lastPlay.getGameScore_2() == 7) 
-			winner = 2;
-				
-		return winner;
-	}
 	
 	//Sprint 2 : user story 2 Tie Break mode
-	public static int playerWinSetTieBreakMode(TennisMatch lastPlay){
+	public static int playerWinSet(TennisMatch lastPlay){
 		int winner = 0;
 		
 		if (lastPlay.getGameScore_1() < 6 && lastPlay.getGameScore_2() < 6 )
